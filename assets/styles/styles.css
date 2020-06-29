@@ -1,0 +1,44 @@
+html,
+body {
+  font-family: 'Lato', sans-serif;
+}
+pre {
+  transition: opacity .2s ease-in-out;
+}
+pre:empty {
+  opacity: 0;
+}
+[data-button] {
+  display: block;
+  margin: 0 auto;
+  width: auto !important;
+}
+
+.error {
+  border-color: indianred !important;
+}
+
+.gradient {
+  background: linear-gradient(270deg, #91ceea, #f5f5f5);
+  background-size: 400% 400%;
+
+  -webkit-animation: gradient 19s ease infinite;
+  -moz-animation: gradient 19s ease infinite;
+  animation: gradient 19s ease infinite;
+}
+
+@-webkit-keyframes gradient {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+@-moz-keyframes gradient {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+@keyframes gradient {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}

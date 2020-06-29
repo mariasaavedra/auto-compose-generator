@@ -1,0 +1,19 @@
+{
+  "name": "auto-compose-generator",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/mariasaavedra/auto-compose-generator.git",
+  "author": "Maria Saavedra <msaav3@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "chalk": "^4.1.0",
+    "express": "^4.17.1",
+    "mongodb": "^3.5.9",
+    "shortid": "^2.2.15",
+    "valid-url": "^1.0.9"
+  },
+  "scripts": {
+    "start": "node index.js "
+  }
+}
