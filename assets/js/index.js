@@ -29,7 +29,7 @@ function sendRequest(msg){
   })
   .then(function (response) {
     console.log(response.data.url);
-    let href =  'http://localhost:7000/templates/' + response.data.url;
+    let href =  'http://localhost:3000/templates/' + response.data.url;
     link.href = href;
     link.innerHTML = href;
   })

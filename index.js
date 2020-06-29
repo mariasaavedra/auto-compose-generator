@@ -13,7 +13,9 @@ const { MongoClient } = require('mongodb');
 // @see https://zellwk.com/blog/environment-variables/
 
 // Replace process.env.DB_URL with your actual connection string
-const connectionString = "mongodb://localhost/mailtodb";
+const connectionString = "mongodb+srv://linkylink:a1FZayN6sD93ljFL@cluster0-tbyld.mongodb.net/linkylinkdb?retryWrites=true&w=majority";
+// const uri = "mongodb+srv://linkylink:<password>@cluster0-tbyld.mongodb.net/<dbname>?retryWrites=true&w=majority";
+// const connectionString = "mongodb://localhost/mailtodb";
 
 MongoClient.connect(connectionString, { useUnifiedTopology: true })
   .then(client => {
@@ -58,7 +60,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
     // Listen
     // ========================
 
-    const port = 7000;
+    const port = 3000;
     app.listen(port, function () {
       console.log(`listening on ${port}`)
     })
