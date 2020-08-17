@@ -22,13 +22,15 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
     console.log('Connected to Database')
     const db = client.db('mailtodb')
     const templatesCollection = db.collection('templates')
-
+    const urlCollection = db.collection('url')
     // ========================
     // Middlewares
     // ========================
     app.use(bodyParser.urlencoded({ extended: true }))
     app.use(bodyParser.json())
     app.use(express.static('assets'));
+
+
 
     // ========================
     // Routes
@@ -37,18 +39,59 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
       res.sendFile(path.join(__dirname + '/views/index.html'));
     });
 
-    app.post('/templates', (req, res) => {
-      templatesCollection.insertOne({
-          url: shortid.generate(),
-          template: req.body.template
-      })
-        .then(result => {
+    app.get('/url', function(req, res) {
+      res.sendFile(path.join(__dirname + '/views/url.html'));
+    });
+
+
+    // ========================
+    // URL Shortener Routes
+    // ========================
+
+    app.post('/url', (req, res) => {
+      console.log(req);
+      let shorturl;
+      // If an alias isn't provided, generate a short id.
+      if (req.body.alias && req.body.alias.length !== 0) {
+        shorturl = req.body.alias;
+      } else {
+        shorturl = shortid.generate();
+      }
+
+      // Insert alias link into URL collection.
+      urlCollection.insertOne({
+          url: shorturl,
+          longUrl: req.body.longUrl
+      }).then(result => {
           res.json(result.ops[0]);
         })  
         .catch(error => console.error(error))
     })
 
+    app.get('/url/:alias', (req, res) => {
+      db.collection('url').findOne({"url": req.params.alias })
+        .then(url => {
+          res.redirect(url.longUrl);
+        });
+    })
 
+    // ========================
+    // Mailto Routes
+    // ========================
+
+    // POST
+    app.post('/templates', (req, res) => {
+      templatesCollection.insertOne({
+          url: shortid.generate(),
+          template: req.body.template
+      }) .then(result => {
+          res.json(result.ops[0]);
+        })  
+        .catch(error => console.error(error))
+    })
+
+    // GET  
+    // @params id 
     app.get('/templates/:id', (req, res) => {
       db.collection('templates').findOne({"url": req.params.id })
         .then(templates => {
@@ -61,7 +104,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
     // ========================
 
     const port = 3000;
-    app.listen(port, function () {
+    app.listen(port, function () {  
       console.log(`listening on ${port}`)
     })
   })

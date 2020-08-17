@@ -8,11 +8,8 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> 
   <link rel="stylesheet" type="text/css" href="/styles/styles.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
 </head>
 <body class="gradient">
-  <div class="container">
-
     <!-- START NAV -->
     <nav class="navbar container py-5 navbar-expand-lg navbar-light bg-transparent">
       <a class="navbar-brand" href="#">URL Generator</a>
@@ -39,21 +36,24 @@
     <!-- END NAV -->
 
 
-    <!-- START MAILTO GENERATOR -->
-    <div class="card shadow rounded-lg p-5">
-      <div data-wrapper></div>
-      <form>
-        <input class="my-2 form-control" type=email id=to placeholder=To required>
-        <input class="my-2 form-control" type=text id=subject placeholder=Subject>
-        <textarea id=body class="my-2 w-100 form-control" placeholder=Body></textarea>
-        <input type=button data-button=outline value="Generate" class="shadow-sm my-2 form-control btn btn-primary float-left" onclick=buildString()>
-      </form>
-      <a target="_blank" href="#" class="d-block" id=link></a> 
-    </div>
-    <!-- END MAILTO GENERATOR -->
-    
+  <div class="container">
+    <p>URL SHORTENER</p>
+    <form>
+      <div>
+        <input class="form-control" type="text" id="longUrl" placeholder="http://www.example.com">
+      </div>
+      <div>
+        <label class="mt-4"> (Optional) Custom Alias</label> <br>
+        <input class="form-control" id="alias" type="text" placeholder="bernie4prez">
+      </div>
+      <input class="btn btn-primary mt-4" type="button" onclick="createUrl()" value="Submit">
+    </form>
+    <a target="_blank" href="#" class="d-block" id=link></a> 
   </div>
+
+
+
 
   <script src="/js/index.js"></script>
 </body>
-</html> 
+</html>

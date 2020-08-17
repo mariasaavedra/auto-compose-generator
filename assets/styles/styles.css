@@ -19,12 +19,8 @@ pre:empty {
 }
 
 .gradient {
-  background: linear-gradient(270deg, #91ceea, #f5f5f5);
-  background-size: 400% 400%;
-
-  -webkit-animation: gradient 19s ease infinite;
-  -moz-animation: gradient 19s ease infinite;
-  animation: gradient 19s ease infinite;
+  background: #333;
+  color: #fff;
 }
 
 @-webkit-keyframes gradient {
