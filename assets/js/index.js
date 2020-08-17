@@ -36,9 +36,9 @@ function createUrl() {
       let link = document.getElementById('link');
       let href;
       if (response.data.url) {
-        href =  'http://localhost:3000/url/' + response.data.url;
+        href =  '/url/' + response.data.url;
       } else {
-        href =  'http://localhost:3000/url/' + response.data.alias;
+        href =  '/url/' + response.data.alias;
       }
       link.href = href;
       link.innerHTML = href;
@@ -58,7 +58,7 @@ function sendRequest(msg){
   })
   .then(function (response) {
     console.log(response.data.url);
-    let href =  'http://localhost:3000/templates/' + response.data.url;
+    let href =  '/templates/' + response.data.url;
     link.href = href;
     link.innerHTML = href;
   })
